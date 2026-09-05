@@ -1,0 +1,30 @@
+## "mkf"
+## written by rezoid.
+
+## <https://codeberg.org/rezoid/er1600>
+
+
+CXX    = g++
+CXXFLG = -std=c++23
+
+SOURCE = $(wildcard src/*.cxx)   
+OUTPUT = bin/er1600
+
+
+ini:
+	@echo "working..."
+	@mkdir -p bin
+	@rm -f $(OUTPUT)
+
+all:	ini
+	@echo "working."
+	@$(CXX) $(CXXFLG) $(SOURCE) -o $(OUTPUT)
+	@echo "success."
+
+run:	all
+	./$(OUTPUT)	
+
+cls:
+	@echo "cleaning..."
+	@rm -rf bin/
+	@echo "success."

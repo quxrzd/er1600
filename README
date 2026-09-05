@@ -1,0 +1,32 @@
+## "er1600"
+## an rz1600 emulator.
+
+## <https://codeberg.org/rezoid/er1600>
+
+
+## ABOUT
+"er1600" is an rz1600 emulator. it attempts to act
+as a fake6502-style emulator for the rz1600 CPU.
+it is also the first implementation of the rz1600.
+
+
+## BUILD
+er1600 requires a C++ compiler supporting C++23,
+as well as make.
+
+to build, invoke make:
+$ make -f mkf
+
+to build and run, invoke make:
+$ make -f mkf run
+
+to clean, invoke make:
+$ make -f mkf cls
+
+
+## STATUS
+under development. 
+
+## LICENSE
+this software is dedicated to the public domain.
+see "PUBLIC" for more information.
