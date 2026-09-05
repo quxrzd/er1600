@@ -10,8 +10,8 @@
 #include <cstdint>
 
 
-class ER1600 {
-
+class ER1600
+{
 private:
         int16_t   A; // general
         int16_t   B; // general
@@ -29,6 +29,7 @@ private:
 public:
         void rst();
         void exe();
+        uint32_t get(char reg);
 };
 
 
