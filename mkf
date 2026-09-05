@@ -11,18 +11,20 @@ SOURCE = $(wildcard src/*.cxx)
 OUTPUT = bin/er1600
 
 
+.DEFAULT_GOAL = all
+.PHONY: ini all run cls
+
 ini:
 	@echo "working..."
-	@mkdir -p bin
+	@mkdir -p bin src
 	@rm -f $(OUTPUT)
 
 all:	ini
-	@echo "working."
 	@$(CXX) $(CXXFLG) $(SOURCE) -o $(OUTPUT)
 	@echo "success."
 
 run:	all
-	./$(OUTPUT)	
+	@./$(OUTPUT)	
 
 cls:
 	@echo "cleaning..."
