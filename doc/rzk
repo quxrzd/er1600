@@ -1,0 +1,42 @@
+## "rzk"
+## written by rezoid.
+
+## <https://codeberg.org/rezoid/er1600>
+
+
+## INTRO & INFO
+== ============
+this text document acts as a general reference to
+the rzk instruction set architecture, alongside
+references on its first implementation, rz1600,
+in which is emulated through the er1600 program.
+
+## REGISTERS
+== =========
+the rzk instruction set architecture uses nine
+hardware registers. the following are listed:
+
+   A B C & D: general-purpose sixteen-bit
+   registers.
+   
+   F: eight-bit flags register
+   
+   J & K: twenty-four-bit pointer registers.
+   
+   P: twenty-four-bit instruction pointer.
+   Q: twenty-four-bit stack pointer.
+   
+## INSTRUCTIONS
+== ============   
+the rzk instruction set architecture has a total
+of sixty-four instructions. an instruction is a
+single byte containing two bit fields:
+
+[011001][00]
+
+the first bit field, "I", contains six bits. it
+is also known as the "instruction field", and
+determines the instruction being executed. the
+second bit field, "S", contains two bits. it is
+also known as the "selection field", and acts as
+a modifier to the instruction being executed.
