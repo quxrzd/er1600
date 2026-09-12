@@ -3,6 +3,9 @@
 
 ## <https://codeberg.org/rezoid/er1600>
 
+## this software is dedicated to the public
+## domain. attribution would be appreciated.
+
 
 CXX    = g++
 CXXFLG = -std=c++23
@@ -13,6 +16,7 @@ OUTPUT = bin/er1600
 
 .DEFAULT_GOAL = all
 .PHONY: ini all run cls
+
 
 ini:
 	@echo "working..."

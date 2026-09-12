@@ -3,27 +3,24 @@
 
 // <codeberg.org/rezoid/er1600>
 
+// this software is dedicated to the public
+// domain. attribution would be appreciated.
+
 
 #include "er1600.hxx"
 
 
-void ER1600::rst()
+void ER1600::rst(void)
 {
-    A = 0x0000;
-    B = 0x0000;
-    C = 0x0000;
-    D = 0x0000;
+    A = B = C = D = 0x0000;
+    Q = R = I = S = 0x000000;
     F = 0x00;
-    G = 0x00000000;
-    H = 0x00000000;
-    X = 0x00000000;
-    Y = 0x00000000;
 }
 
-void ER1600::exe()
+void ER1600::exe(void)
 {
-    X += 0x01;
-    X &= 0xFFFFFF;
+    I += 0x01;
+    I &= 0xFFFFFF;
 }
 
 uint32_t ER1600::get(char reg)
@@ -34,12 +31,11 @@ uint32_t ER1600::get(char reg)
         case 'B': return B;
         case 'C': return C;
         case 'D': return D;
+        case 'Q': return Q;
+        case 'R': return R;
+        case 'I': return I;
+        case 'S': return S;
         case 'F': return F;
-        case 'G': return G;
-        case 'H': return H;
-        case 'X': return X;
-        case 'Y': return Y;
-
-        default: return 0;
+        default:  return 0;
     }
 }

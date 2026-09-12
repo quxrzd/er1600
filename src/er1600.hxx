@@ -3,6 +3,9 @@
 
 // <https://codeberg.org/rezoid/er1600>
 
+// this software is dedicated to the public
+// domain. attribution would be appreciated.
+
 
 #ifndef ER1600_H
 #define ER1600_H
@@ -13,22 +16,14 @@
 class ER1600
 {
 private:
-        int16_t   A; // general
-        int16_t   B; // general
-        int16_t   C; // general
-        int16_t   D; // general
-
-        uint32_t  G; // pointer
-        uint32_t  H; // pointer
-
-        uint32_t  X; // counter
-        uint32_t  Y; // stack
-
-        uint8_t   F; // flags
-
+        uint16_t  A, B, C, D;
+        uint32_t  Q, R, I, S;
+        uint8_t   F;
 public:
-        void rst();
-        void exe();
+        void rst(void);
+        void exe(void);
+        uint8_t rzR(uint32_t adr);
+        void rzW(uint32_t adr, uint8_t val);
         uint32_t get(char reg);
 };
 
