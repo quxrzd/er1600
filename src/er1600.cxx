@@ -10,20 +10,39 @@
 #include "er1600.hxx"
 
 
-void ER1600::rst(void)
+void er1600::rst(void)
 {
     A = B = C = D = 0x0000;
     Q = R = I = S = 0x000000;
-    F = 0x00;
+    t = o = F = 0x00;
 }
 
-void ER1600::exe(void)
+uint8_t er1600::cyc(void)
 {
-    I += 0x01;
-    I &= 0xFFFFFF;
+    o = rzR(I);
+
+    switch (o)
+    {
+        // "nop"
+        case 0x00:
+            // confused this shit earlier as trm.
+            I += 0x01;
+            break;
+
+        // "trm"
+        case 0x01:
+            I += 0x01;
+            F |= FLGHLT;
+            return er1600HALTOP;
+
+        default:
+            return er1600FAKEOP;
+    }
+        I &= 0xFFFFFF;
+        return er1600NORMAL;
 }
 
-uint32_t ER1600::get(char reg)
+uint32_t er1600::get(char reg)
 {
     switch (reg)
     {
