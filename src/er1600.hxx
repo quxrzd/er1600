@@ -3,10 +3,13 @@
 
 // <https://codeberg.org/rezoid/er1600>
 
-// this software is dedicated to the public
-// domain. attribution would be appreciated.
+// this software is dedicated to the public domain.
+// attribution would be appreciated.
 
 
+
+
+// === includes & definitions ===
 #ifndef ER1600_H
 #define ER1600_H
 
@@ -26,25 +29,26 @@ enum ERRORTYPE
 {
         er1600NORMAL,
         er1600FAKEOP,
-        er1600HALTOP,
+        er1600TERMOP,
 };
 
+
+
+// === er1600 class ===
 class er1600
 {
 private:
-        // external (marked by uppercase
-        // letters):
+        // external (marked by uppercase letters):
         uint16_t  A, B, C, D;
         uint32_t  Q, R, I, S;
         uint8_t   F;
-        // internal (marked by lowercase
-        // letters):
+        // internal (marked by lowercase letters):
         uint8_t   o, t;
 public:
         void rst(void);
         uint8_t cyc(void);
-        uint8_t rzR(uint32_t adr);
-        void rzW(uint32_t adr, uint8_t val);
+        uint8_t exR(uint32_t adr);
+        void exW(uint32_t adr, uint8_t val);
         uint32_t get(char reg);
 };
 

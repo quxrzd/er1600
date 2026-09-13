@@ -1,62 +1,75 @@
 // "prg.cxx"
 // written by rezoid.
 
-// <codeberg.org/rezoid/er1600>
+// <https://codeberg.org/rezoid/er1600>
 
-// this software is dedicated to the public
-// domain. attribution would be appreciated.
+// this software is dedicated to the public domain.
+// attribution would be appreciated.
 
 
+
+
+// === includes & definitions ===
 #include <iostream>
 #include <iomanip>
 #include "er1600.hxx"
 
-#define HEX(num) "0x" <<       \
-setfill('0') << setw(num) <<   \
-uppercase << hex
+#define HEX(num) "0x" << setfill('0') << \
+setw(num) << uppercase << hex
 using namespace std;
 
 
-uint8_t mem[65536] = {0x00};
 
-uint8_t er1600::rzR(uint32_t adr)
+// === er1600 function implementations ===
+uint8_t mem[(1 << 16)] = {0x00};
+
+uint8_t er1600::exR(uint32_t adr)
 {
         return mem[adr];
 }
 
-void er1600::rzW(uint32_t adr, uint8_t val)
+void er1600::exW(uint32_t adr, uint8_t val)
 {
         mem[adr] = val;
 }
 
 
+
+// === main function ===
 int main(void)
 {
+        cout << "er1600 test program.\n" << \
+        "written by rezoid.\n";
+
         er1600 rz1600;
         rz1600.rst();
 
-        mem[0x0000] = 0b00000000;
-        mem[0x0024] = 0b01010101; /* tester shit
-        or whatever. */
-        mem[0x0022] = 0b00000001;
+        // hardcoded program of sorts.
+        mem[0x0000] = 0b00000000; // nop
+        mem[0x0024] = 0b10101010; // illegal instruction.
+        mem[0x0032] = 0b00000001; // trm
 
-        uint8_t status;
+        // so that we can get the status value.
+        uint8_t status = er1600NORMAL;
 
         while (true)
         {
+                if (status != er1600NORMAL) { break; }
+                cout << HEX(6) << rz1600.get('I');   \
+                cout << " " << HEX(2) <<	     \
+                (int)rz1600.exR(rz1600.get('I'))     \
+                << "\n";
                 status = rz1600.cyc();
-                if (status == er1600FAKEOP || \
-                status == er1600HALTOP) { break; }
-
-                cout << rz1600.get('I') << "\n";
         }
 
         if (status == er1600FAKEOP)
-        {
-                cout << "illgeal instruction\n";
-        } else if (status == er1600HALTOP)
-        {
-                cout << "system halted.\n";
+        {	cout << "illegal instruction; ";
+        } else if (status == er1600TERMOP)
+        {	cout << "halt bit set; ";
+        } else
+        {	cout << "unknown error; ";
         }
+
+        cout << "system terminated.\n";
 
 }

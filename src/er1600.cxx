@@ -1,17 +1,23 @@
 // "er1600.cxx"
 // written by rezoid.
 
-// <codeberg.org/rezoid/er1600>
+// <https://codeberg.org/rezoid/er1600>
 
-// this software is dedicated to the public
-// domain. attribution would be appreciated.
+// this software is dedicated to the public domain.
+// attribution would be appreciated.
 
 
+
+
+// === includes & definitions ===
 #include "er1600.hxx"
 
 
+// === functions ===
 void er1600::rst(void)
 {
+    // lowercase variables are internal.
+    // uppercase variables are external.
     A = B = C = D = 0x0000;
     Q = R = I = S = 0x000000;
     t = o = F = 0x00;
@@ -19,13 +25,12 @@ void er1600::rst(void)
 
 uint8_t er1600::cyc(void)
 {
-    o = rzR(I);
+    o = exR(I);
 
     switch (o)
     {
         // "nop"
         case 0x00:
-            // confused this shit earlier as trm.
             I += 0x01;
             break;
 
@@ -33,7 +38,7 @@ uint8_t er1600::cyc(void)
         case 0x01:
             I += 0x01;
             F |= FLGHLT;
-            return er1600HALTOP;
+            return er1600TERMOP;
 
         default:
             return er1600FAKEOP;
