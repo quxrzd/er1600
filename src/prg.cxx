@@ -14,6 +14,7 @@
 #include <iomanip>
 #include "er1600.hxx"
 
+#define MEM (1 << 16)
 #define HEX(num) "0x" << setfill('0') << \
 setw(num) << uppercase << hex
 using namespace std;
@@ -21,16 +22,16 @@ using namespace std;
 
 
 // === er1600 function implementations ===
-uint8_t mem[(1 << 16)] = {0x00};
+uint8_t mem[MEM] = {0x00};
 
 uint8_t er1600::exR(uint32_t adr)
 {
-        return mem[adr];
+        return mem[adr & (MEM - 1)];
 }
 
 void er1600::exW(uint32_t adr, uint8_t val)
 {
-        mem[adr] = val;
+        mem[adr & (MEM - 1)] = val;
 }
 
 
