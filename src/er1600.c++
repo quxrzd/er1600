@@ -1,26 +1,39 @@
-// "er1600.cxx"
+// "er1600.c++"
 // written by rezoid.
-
-// <https://codeberg.org/rezoid/er1600>
 
 // this software is dedicated to the public domain.
 // attribution would be appreciated.
 
 
+// === INCLUDES & DEFINITIONS ===
+#include "er1600.h++"
+#include "microcode.h++"
 
 
-// === includes & definitions ===
-#include "er1600.hxx"
+// === MICROCODE FUNCTIONS ===
+void er1600::inc(uint32_t &reg, uint32_t val)
+{
+    reg = (reg + val);
+}
+void er1600::dec(uint32_t &reg, uint32_t val)
+{
+    reg = (reg - val) & 0xFFFFFF;
+}
+void er1600::set(uint32_t &reg, uint8_t val)
+{
+    reg = (reg |= (1 << val));
+}
 
 
-// === functions ===
+// === PUBLIC FUNCTIONS ===
 void er1600::rst(void)
 {
-    // lowercase variables are internal.
-    // uppercase variables are external.
+    // external variables:
     A = B = C = D = 0x0000;
     Q = R = I = S = 0x000000;
-    t = o = F = 0x00;
+    F = 0x00;
+    // internal variables:
+    o = 0x00;
 }
 
 uint8_t er1600::cyc(void)
@@ -29,21 +42,20 @@ uint8_t er1600::cyc(void)
 
     switch (o)
     {
-        // "nop"
+        // nop
         case 0x00:
-            I += 0x01;
+            inc(I, 1);
             break;
 
-        // "trm"
+        // trm
         case 0x01:
-            I += 0x01;
+            inc(I, 1);
             F |= FLGHLT;
             return er1600TERMOP;
 
         default:
             return er1600FAKEOP;
     }
-        I &= 0xFFFFFF;
         return er1600NORMAL;
 }
 

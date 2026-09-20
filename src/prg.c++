@@ -1,18 +1,15 @@
-// "prg.cxx"
+// "prg.c++"
 // written by rezoid.
-
-// <https://codeberg.org/rezoid/er1600>
 
 // this software is dedicated to the public domain.
 // attribution would be appreciated.
 
 
 
-
 // === includes & definitions ===
 #include <iostream>
 #include <iomanip>
-#include "er1600.hxx"
+#include "er1600.h++"
 
 #define MEM (1 << 16)
 #define HEX(num) "0x" << setfill('0') << \

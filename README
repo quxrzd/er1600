@@ -1,7 +1,6 @@
 ## "er1600"
 ## an rz1600 emulator.
 
-## <https://codeberg.org/rezoid/er1600>
 
 
 ## ABOUT
@@ -11,6 +10,8 @@ implemented as a C++ library.
 
 ## BUILD
 er1600 requires a C++11 compiler and make.
+this is developed primarily on a GNU/Linux machine, so I am
+not sure if it can work with Windows machine.
 
 note that the command is run with the "-f mkf" flag. this
 is for uniformity with the naming scheme, with the name
@@ -30,7 +31,21 @@ $ make -f mkf cls
 
 ## STATUS
 under development.
-currently planning to quit usage of codeberg. .
+
+as of 09/20/2026, usage of codeberg has halted. this is due
+to my custom public domain waiver apparently violating the
+terms of service for some reason.
+
+
+## TODO
+++ add micro operations.
+++ make "cyc" function use micro operations and switch
+   the current two instructions to use them.
+++ make it so that the "cyc" function gets the instruction,
+   goes to a switch statement to index the instruction, goes
+   to a switch statement for the µ-operations, then in
+   turn executes a µ-operation, and waits until the next
+   execution tick, clocked at 16MHz.
 
 
 ## LICENSE
