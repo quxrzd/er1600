@@ -35,7 +35,6 @@ void er1600::exW(uint32_t adr, uint8_t val)
 }
 
 
-
 // === main function ===
 int main(void)
 {

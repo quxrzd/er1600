@@ -5,30 +5,35 @@
 
 
 ## ABOUT
-"er1600" is an rz1600 emulator. it attempts to act
-as a fake6502-style emulator for the rz1600 CPU.
-it is also the first implementation of the rz1600.
+"er1600" is a rezoid(tm) rz1600 cycle-accurate emulator
+implemented as a C++ library.
 
 
 ## BUILD
-er1600 requires a C++ compiler supporting C++23,
-as well as make.
+er1600 requires a C++11 compiler and make.
 
-to build, invoke make:
+note that the command is run with the "-f mkf" flag. this
+is for uniformity with the naming scheme, with the name
+"makefile" condensed to "mkf".
+
+
+to build and get an executable, run make with the -f flag:
 $ make -f mkf
 
-to build and run, invoke make:
+to build, get an executable, and run that executable, run
+make with the "run" target:
 $ make -f mkf run
 
-to clean, invoke make:
+to clean out the executable, run make 
 $ make -f mkf cls
 
 
 ## STATUS
-under development. 
+under development.
+currently planning to quit usage of codeberg. .
 
 
 ## LICENSE
-this software, including related documentation,
-is dedicated to the public domain. see "PUBLIC"
-for more information.
+this software, including related documentation, is
+dedicated to the public domain. see "PUBLIC" for more
+information.
