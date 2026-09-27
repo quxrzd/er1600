@@ -1,31 +1,19 @@
 // "er1600.c++"
 // written by rezoid.
 
+// <https://www.github.com/quxrzd/er1600>
+
 // this software is dedicated to the public domain.
 // attribution would be appreciated.
 
 
-// === INCLUDES & DEFINITIONS ===
+
+// INCLUDES & DEFINITIONS
 #include "er1600.h++"
-#include "microcode.h++"
 
 
-// === MICROCODE FUNCTIONS ===
-void er1600::inc(uint32_t &reg, uint32_t val)
-{
-    reg = (reg + val);
-}
-void er1600::dec(uint32_t &reg, uint32_t val)
-{
-    reg = (reg - val) & 0xFFFFFF;
-}
-void er1600::set(uint32_t &reg, uint8_t val)
-{
-    reg = (reg |= (1 << val));
-}
 
-
-// === PUBLIC FUNCTIONS ===
+// PUBLIC FUNCTIONS
 void er1600::rst(void)
 {
     // external variables:
@@ -42,14 +30,14 @@ uint8_t er1600::cyc(void)
 
     switch (o)
     {
-        // nop
+        // "nop"
         case 0x00:
-            inc(I, 1);
+            I += 0x01;
             break;
 
-        // trm
+        // "trm"
         case 0x01:
-            inc(I, 1);
+            I += 0x01;
             F |= FLGHLT;
             return er1600TERMOP;
 

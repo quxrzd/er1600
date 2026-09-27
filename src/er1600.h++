@@ -1,12 +1,16 @@
 // "er1600.h++"
 // written by rezoid.
 
+// <https://www.github.com/quxrzd/er1600>
+
 // this software is dedicated to the public domain.
 // attribution would be appreciated.
 
 
 
-// === INCLUDES & DEFINITIONS ===
+// INCLUDES & DEFINITIONS
+#include <cstdint>
+
 #ifndef ER1600_H
 #define ER1600_H
 
@@ -19,8 +23,6 @@
 #define FLGGGG 0x40
 #define FLGHLT 0x80
 
-#include <cstdint>
-
 enum ERRORTYPE
 {
         er1600NORMAL,
@@ -30,11 +32,10 @@ enum ERRORTYPE
 
 
 
-// === er1600 CLASS ===
+// er1600 CLASS
 class er1600
 {
 private:
-        // === VARIABLES ===
         // external variables:
         uint16_t  A, B, C, D;
         uint32_t  Q, R, I, S;
@@ -42,7 +43,7 @@ private:
         // internal variables:
         uint8_t   o;
 
-        // === MICROCODE FUNCTIONS ===
+        // MICROCODE FUNCTIONS
         void inc(uint32_t &reg, uint32_t val);
         void dec(uint32_t &reg, uint32_t val);
         void set(uint32_t &reg, uint8_t val);
@@ -53,6 +54,5 @@ public:
         void exW(uint32_t adr, uint8_t val);
         uint32_t get(char reg);
 };
-
 
 #endif
