@@ -1,6 +1,8 @@
 ## "mkf"
 ## written by rezoid.
 
+## <https://www.github.com/quxrzd/er1600>
+
 ## this software is dedicated to the public domain.
 ## attribution would be appreciated.
 
@@ -25,9 +27,11 @@ ini:
 all:	ini
 	@$(CXX) $(CXXFLG) $(SOURCE) -o $(OUTPUT)
 	@echo "success."
+	@echo ""
 
 run:	all
-	@./$(OUTPUT)	
+	@./$(OUTPUT)
+	@echo ""
 
 cls:
 	@echo "cleaning..."
