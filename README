@@ -4,19 +4,19 @@
 ## <https://www.github.com/quxrzd/er1600>
 
 
+
 ## ABOUT
 "er1600" is a rezoid(tm) rz1600 cycle-accurate emulator
 implemented as a C++ library.
 
 
+
 ## BUILD
 er1600 requires a C++11 compiler and make.
-this is developed primarily on a GNU/Linux machine, so I am
-not sure if it can work with Windows machine.
+since this is developed on an Artix machine, I cannot
+guarantee that this can run on a Windows machine.
 
-note that the command is run with the "-f mkf" flag. this
-is for uniformity with the naming scheme, with the name
-"makefile" condensed to "mkf".
+note that the command is run with the "-f mkf" flag.
 
 
 to build and get an executable, run make with the -f flag:
@@ -29,20 +29,6 @@ $ make -f mkf run
 to clean out the executable, run make 
 $ make -f mkf cls
 
-
-## STATUS
-under development.
-
-
-## TODO
-++ add micro operations.
-++ make "cyc" function use micro operations and switch
-   the current two instructions to use them.
-++ make it so that the "cyc" function gets the instruction,
-   goes to a switch statement to index the instruction, goes
-   to a switch statement for the µ-operations, then in
-   turn executes a µ-operation, and waits until the next
-   execution tick, clocked at 16MHz.
 
 
 ## LICENSE

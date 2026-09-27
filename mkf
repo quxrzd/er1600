@@ -27,9 +27,9 @@ ini:
 all:	ini
 	@$(CXX) $(CXXFLG) $(SOURCE) -o $(OUTPUT)
 	@echo "success."
-	@echo ""
 
 run:	all
+	@echo ""
 	@./$(OUTPUT)
 	@echo ""
 

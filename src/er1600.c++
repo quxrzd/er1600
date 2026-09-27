@@ -32,13 +32,12 @@ uint8_t er1600::cyc(void)
     {
         // "nop"
         case 0x00:
-            I += 0x01;
+            inc(I, 1);
             break;
 
         // "trm"
         case 0x01:
-            I += 0x01;
-            F |= FLGHLT;
+            set(F, FLGHLT, 1);
             return er1600TERMOP;
 
         default:
@@ -47,7 +46,7 @@ uint8_t er1600::cyc(void)
         return er1600NORMAL;
 }
 
-uint32_t er1600::get(char reg)
+int32_t er1600::get(char reg)
 {
     switch (reg)
     {
@@ -60,6 +59,6 @@ uint32_t er1600::get(char reg)
         case 'I': return I;
         case 'S': return S;
         case 'F': return F;
-        default:  return 0;
+        default:  return -1;
     }
 }

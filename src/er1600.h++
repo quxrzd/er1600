@@ -36,23 +36,29 @@ enum ERRORTYPE
 class er1600
 {
 private:
-        // external variables:
+        // external variables
         uint16_t  A, B, C, D;
         uint32_t  Q, R, I, S;
         uint8_t   F;
-        // internal variables:
+        // internal variables
         uint8_t   o;
 
-        // MICROCODE FUNCTIONS
+        // er1600 MICROCODE FUNCTIONS
+        void inc(uint8_t  &reg, uint8_t  val);
+        void inc(uint16_t &reg, uint16_t val);
         void inc(uint32_t &reg, uint32_t val);
+        void dec(uint8_t  &reg, uint8_t  val);
+        void dec(uint16_t &reg, uint16_t val);
         void dec(uint32_t &reg, uint32_t val);
-        void set(uint32_t &reg, uint8_t val);
+        void set(uint8_t  &reg, uint8_t  bit, bool val);
+        void set(uint16_t &reg, uint16_t bit, bool val);
+        void set(uint32_t &reg, uint32_t bit, bool val);
 public:
         void rst(void);
         uint8_t cyc(void);
         uint8_t exR(uint32_t adr);
         void exW(uint32_t adr, uint8_t val);
-        uint32_t get(char reg);
+        int32_t get(char reg);
 };
 
 #endif
