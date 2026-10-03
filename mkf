@@ -8,32 +8,33 @@
 
 
 
-CXX    = g++
-CXXFLG = -std=c++11
+C++    = g++
+C++FLG = -std=c++11
 
-SOURCE = $(wildcard src/*.c++)   
-OUTPUT = bin/er1600
+SRC = $(wildcard src/er1600/*.c++) src/prg.c++
+OUT = bin/er1600
 
 
+## TODO: fix broken makefile.
 .DEFAULT_GOAL = all
-.PHONY: ini all run cls
+.PHONY: ini all run clr
 
 
 ini:
 	@echo "working..."
-	@mkdir -p bin src
+	@mkdir -p bin
 	@rm -f $(OUTPUT)
 
 all:	ini
-	@$(CXX) $(CXXFLG) $(SOURCE) -o $(OUTPUT)
+	@$(C++) $(C++FLG) $(SRC) -o $(OUT)
 	@echo "success."
 
 run:	all
 	@echo ""
-	@./$(OUTPUT)
+	@./$(OUT)
 	@echo ""
 
-cls:
+clr:
 	@echo "cleaning..."
 	@rm -rf bin/
 	@echo "success."

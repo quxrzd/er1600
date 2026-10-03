@@ -4,31 +4,24 @@
 // <https://www.github.com/quxrzd/er1600>
 
 // this software is dedicated to the public domain.
-// attribution would be appreciated.
-
+// attribution appreciated; not required.
 
 
 // INCLUDES & DEFINITIONS
 #include "er1600.h++"
 
 
-
 // PUBLIC FUNCTIONS
 void er1600::rst(void)
 {
-    // external variables:
     A = B = C = D = 0x0000;
     Q = R = I = S = 0x000000;
     F = 0x00;
-    // internal variables:
-    o = 0x00;
 }
 
 uint8_t er1600::cyc(void)
 {
-    o = exR(I);
-
-    switch (o)
+    switch (exR(I))
     {
         // "nop"
         case 0x00:
@@ -37,8 +30,12 @@ uint8_t er1600::cyc(void)
 
         // "trm"
         case 0x01:
-            set(F, FLGHLT, 1);
+            stB(F, FLGHLT, 1);
             return er1600TERMOP;
+
+        // "mov"
+        case 0x08:
+            stV(A, 255);
 
         default:
             return er1600FAKEOP;

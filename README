@@ -4,31 +4,28 @@
 ## <https://www.github.com/quxrzd/er1600>
 
 
-
 ## ABOUT
 "er1600" is a rezoid(tm) rz1600 cycle-accurate emulator
 implemented as a C++ library.
 
 
-
-## BUILD
+## COMPILE
 er1600 requires a C++11 compiler and make.
-since this is developed on an Artix machine, I cannot
-guarantee that this can run on a Windows machine.
+"all", "run", and "clr" targets can be used.
 
-note that the command is run with the "-f mkf" flag.
+on a unix-like machine, run the following:
+$ make -f mkf <target>
+
+replace <target> with the target of choice. 
 
 
-to build and get an executable, run make with the -f flag:
-$ make -f mkf
+## HACKING
+to hack around, simply copy the src/er1600 directory and
+implement it in your own projects.
 
-to build, get an executable, and run that executable, run
-make with the "run" target:
-$ make -f mkf run
-
-to clean out the executable, run make 
-$ make -f mkf cls
-
+"microcode.c++" is the file with the microcode
+implementations defined in "er1600.h++", in which
+"er1600.c++" puts to use. "prg.c++" is a dummy program.
 
 
 ## LICENSE

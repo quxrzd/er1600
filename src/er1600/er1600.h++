@@ -4,8 +4,7 @@
 // <https://www.github.com/quxrzd/er1600>
 
 // this software is dedicated to the public domain.
-// attribution would be appreciated.
-
+// attribution appreciated; not required.
 
 
 // INCLUDES & DEFINITIONS
@@ -23,6 +22,10 @@
 #define FLGGGG 0x40
 #define FLGHLT 0x80
 
+#define MAXU24 ((1u << 24) - 1)
+#define MAXU16 ((1u << 16) - 1)
+#define MAXU08 ((1u <<  8) - 1)
+
 enum ERRORTYPE
 {
         er1600NORMAL,
@@ -31,17 +34,13 @@ enum ERRORTYPE
 };
 
 
-
 // er1600 CLASS
 class er1600
 {
 private:
-        // external variables
         uint16_t  A, B, C, D;
         uint32_t  Q, R, I, S;
         uint8_t   F;
-        // internal variables
-        uint8_t   o;
 
         // er1600 MICROCODE FUNCTIONS
         void inc(uint8_t  &reg, uint8_t  val);
@@ -50,9 +49,12 @@ private:
         void dec(uint8_t  &reg, uint8_t  val);
         void dec(uint16_t &reg, uint16_t val);
         void dec(uint32_t &reg, uint32_t val);
-        void set(uint8_t  &reg, uint8_t  bit, bool val);
-        void set(uint16_t &reg, uint16_t bit, bool val);
-        void set(uint32_t &reg, uint32_t bit, bool val);
+        void stB(uint8_t  &reg, uint8_t  bit, bool val);
+        void stB(uint16_t &reg, uint16_t bit, bool val);
+        void stB(uint32_t &reg, uint32_t bit, bool val);
+        void stV(uint8_t  &reg, uint8_t  val);
+        void stV(uint16_t &reg, uint16_t val);
+        void stV(uint32_t &reg, uint32_t val);
 public:
         void rst(void);
         uint8_t cyc(void);
