@@ -26,11 +26,11 @@
 #define MAXU16 ((1u << 16) - 1)
 #define MAXU08 ((1u <<  8) - 1)
 
-enum ERRORTYPE
+enum STATUS
 {
-        er1600NORMAL,
-        er1600FAKEOP,
-        er1600TERMOP,
+        NORMAL,
+        FAKEOP,
+        TERMOP,
 };
 
 
@@ -41,6 +41,9 @@ private:
         uint16_t  A, B, C, D;
         uint32_t  Q, R, I, S;
         uint8_t   F;
+        // temporaries:
+        uint8_t   u, o, s;
+        uint32_t  y, z;
 
         // er1600 MICROCODE FUNCTIONS
         void inc(uint8_t  &reg, uint8_t  val);
@@ -55,11 +58,12 @@ private:
         void stV(uint8_t  &reg, uint8_t  val);
         void stV(uint16_t &reg, uint16_t val);
         void stV(uint32_t &reg, uint32_t val);
+
 public:
-        void rst(void);
+        void    rst(void);
         uint8_t cyc(void);
         uint8_t exR(uint32_t adr);
-        void exW(uint32_t adr, uint8_t val);
+        void    exW(uint32_t adr, uint8_t val);
         int32_t get(char reg);
 };
 

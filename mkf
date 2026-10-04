@@ -4,7 +4,7 @@
 ## <https://www.github.com/quxrzd/er1600>
 
 ## this software is dedicated to the public domain.
-## attribution would be appreciated.
+## attribution appreciated; not required.
 
 
 
@@ -23,7 +23,7 @@ OUT = bin/er1600
 ini:
 	@echo "working..."
 	@mkdir -p bin
-	@rm -f $(OUTPUT)
+	@rm -f $(OUT)
 
 all:	ini
 	@$(C++) $(C++FLG) $(SRC) -o $(OUT)

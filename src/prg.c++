@@ -17,7 +17,7 @@ using namespace std;
 
 
 uint8_t mem[MEM] = {0x00};
-uint8_t status = er1600NORMAL;
+uint8_t status = NORMAL;
 
 // memory implementations:
 uint8_t er1600::exR(uint32_t adr)
@@ -39,17 +39,20 @@ int main(int argc, char **argv)
         er1600 rz1600;
         rz1600.rst();
 
-        // todo: allow binary file importing.
-        mem[0x0008] = 0b00000001;
-        mem[0x000F] = 0b10101010;
+        // todo: allow binary importing.
+        // currently using hardcoded instructions.
+        mem[0x0000] = 0b00001000;
+        mem[0x0001] = 0xFF;
+        mem[0x0002] = 0xEE;
+        mem[0x0003] = 0b00000001;
 
 
         while (true)
         {
-                if (status != er1600NORMAL) { break; }
+                if (status != NORMAL) { break; }
 
                 printf("0x%06X: ", rz1600.get('I'));
-                printf("0x%06X\n", \
+                printf("0b%08B\n", \
                 rz1600.exR(rz1600.get('I')));
 
                 status = rz1600.cyc();
@@ -57,12 +60,12 @@ int main(int argc, char **argv)
 
         // error handler:
         cout << "\n!! ";
-        if (status == er1600FAKEOP)
+        if (status == FAKEOP)
         {
                 cout << "illegal instruction.";
         }
         else
-        if (status == er1600TERMOP)
+        if (status == TERMOP)
         {
                 cout << "halt engaged.";
         }

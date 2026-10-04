@@ -33,12 +33,12 @@ void er1600::inc(uint32_t &reg, uint32_t val)
 // "decrease" ("dec"):
 void er1600::dec(uint8_t  &reg, uint8_t val)
 {
-    reg = reg + val;
+    reg = reg - val;
     reg &= MAXU08;
 }
 void er1600::dec(uint16_t &reg, uint16_t val)
 {
-    reg = reg + val;
+    reg = reg - val;
     reg &= MAXU16;
 }
 void er1600::dec(uint32_t &reg, uint32_t val)
