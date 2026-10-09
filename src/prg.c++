@@ -10,14 +10,15 @@
 // INCLUDES & DEFINITIONS
 #include "er1600/er1600.h++"
 #include <iostream>
+#include <fstream>
+using namespace std;
 
 #define MEM (1u << 16)
-
-using namespace std;
 
 
 uint8_t mem[MEM] = {0x00};
 uint8_t status = NORMAL;
+
 
 // memory implementations:
 uint8_t er1600::exR(uint32_t adr)
@@ -32,6 +33,25 @@ void er1600::exW(uint32_t adr, uint8_t val)
 
 int main(int argc, char **argv)
 {
+        if (argc > 2)
+        {
+                cout << "!! er1600: incorrect usage.\n";
+                // cout << "++ see \"er1600 -h\" for info.\n";
+                return 1;
+        }
+
+        else if (argc < 2)
+        {
+                cout << "!! er1600: no file specified.\n";
+                // cout << "++ see \"er1600 -h\" for info.\n";
+                return 1;
+        }
+        else if (argc = 2)
+        {
+                // TODO: add the fucking logic here.
+        }
+
+
         cout << "## er1600 implementation program\n";
         cout << "## <http://www.github.com/quxrzd/er1600>";
         cout << "\n\n";
@@ -39,14 +59,13 @@ int main(int argc, char **argv)
         er1600 rz1600;
         rz1600.rst();
 
-        // todo: allow binary importing.
-        // currently using hardcoded instructions.
-        mem[0x0000] = 0b00001000;
-        mem[0x0001] = 0xFF;
-        mem[0x0002] = 0xEE;
-        mem[0x0003] = 0b00000001;
+        rz1600.exW(0x0000, 0b00001000);
+        rz1600.exW(0x0001, 0b11111111);
+        rz1600.exW(0x0002, 0b11101110);
+        rz1600.exW(0x0003, 0b00000001);
 
 
+        // execution loop:
         while (true)
         {
                 if (status != NORMAL) { break; }
