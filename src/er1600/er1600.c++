@@ -25,17 +25,17 @@ uint8_t er1600::cyc(void)
     s = ((exR(I) & 0xC0) >> 6);
     switch(o)
     {
-        // "nop"
+        // "nop": no-operation:
         case 0x00:
             inc(I, 1);
             break;
 
-        // "trm"
+        // "trm": terminate:
         case 0x01:
             stB(F, FLGHLT, 1);
             return TERMOP;
 
-        // "str"
+        // "str": set register:
         case 0x08:
             inc(u, 1);
             // read word:

@@ -1,15 +1,22 @@
-## "er1600"
-## an rz1600 emulator.
+         _  __  __   __
+ ___ _ _/ |/ / /  \ /  \ 
+/ -_) '_| / _ \ () | () |
+\___|_| |_\___/\__/ \__/   
 
-## <https://www.github.com/quxrzd/er1600>
+the cycle-accurate rz1600 reference emulator.
+<http://www.github.com/quxrzd/er1600>
+
++================+
 
 
-## ABOUT
-"er1600" is a rezoid(tm) rz1600 cycle-accurate emulator
-implemented as a C++ library.
+## ABOUT:
++=======+
+er1600 is a cycle-accurate rz1600 C++ emulator library that
+attempts to act as a reference emulator.
 
 
-## COMPILE
+## BUILD:
++=======+
 er1600 requires a C++11 compiler and make.
 "all", "run", and "clr" targets can be used.
 
@@ -19,16 +26,21 @@ $ make -f mkf <target>
 replace <target> with the target of choice. 
 
 
-## HACKING
-to hack around, simply copy the src/er1600 directory and
-implement it in your own projects.
+## HACKING:
++=========+
+hacking around is simple: clone er1600:
+$ git clone http://github.com/quxrzd/er1600
 
-"microcode.c++" is the file with the microcode
-implementations defined in "er1600.h++", in which
-"er1600.c++" puts to use. "prg.c++" is a dummy program.
+after that, copy the src/er1600 directory and implement it
+into your own project(s) by including the er1600.h++ file.
+
+microcode.c++ implements microcode functions from
+er1600.h++. er1600.c++ uses the microcode functions from
+microcode.c++. prg.c++ is an implementation of the er1600
+library. 
 
 
-## LICENSE
-this software, including related documentation, is
-dedicated to the public domain. see "PUBLIC" for more
-information.
+## LICENSE:
++=========+
+custom public domain waiver.
+see the PUBLIC file for more information.
